@@ -32,6 +32,7 @@
 //Michael Added
 #include "unistd.h"
 //Michael Ended
+#include "common/sycophant.h"
 
 #define STATE_MACHINE_DATA struct eap_sm
 #define STATE_MACHINE_DEBUG_PREFIX "EAP"
@@ -1663,7 +1664,7 @@ struct wpabuf * eap_sm_buildIdentity(struct eap_sm *sm, int id, int encrypted)
 
 	if (!encrypted) {
 		FILE * anonymous_identity_file;
-		char * phase1_file = "/tmp/SYCOPHANT_P1ID";
+		char * phase1_file = SYCOPHANT_DIR "/SYCOPHANT_P1ID";
 		wpa_hexdump_ascii(MSG_INFO,"SYCOPHANT : Config phase 1 ident :",config->anonymous_identity,config->anonymous_identity_len);
 		while(1){
 			anonymous_identity_file = fopen(phase1_file, "rb");
@@ -1696,7 +1697,7 @@ struct wpabuf * eap_sm_buildIdentity(struct eap_sm *sm, int id, int encrypted)
 
 	} else {
 		FILE * identity_file;
-		char * phase2_file = "/tmp/SYCOPHANT_P2ID";
+		char * phase2_file = SYCOPHANT_DIR "/SYCOPHANT_P2ID";
 		wpa_hexdump_ascii(MSG_INFO,"SYCOPHANT : Config phase 2 ident :",config->identity,config->identity_len);
 		while(1){
 			identity_file = fopen(phase2_file, "rb");

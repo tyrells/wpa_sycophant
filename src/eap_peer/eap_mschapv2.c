@@ -23,6 +23,7 @@
 #include "eap_i.h"
 #include "eap_config.h"
 
+#include "common/sycophant.h"
 
 #ifdef _MSC_VER
 #pragma pack(push, 1)
@@ -76,10 +77,10 @@ struct ms_change_password {
 
 
 // MICHAEL WAS HERE
-char* outLockName = "/tmp/CHALLENGE_LOCK";
-char* inLockName = "/tmp/RESPONSE_LOCK";
-char* outFileName = "/tmp/CHALLENGE";
-char* inFileName = "/tmp/RESPONSE";
+char* outLockName = SYCOPHANT_DIR "/CHALLENGE_LOCK";
+char* inLockName = SYCOPHANT_DIR "/RESPONSE_LOCK";
+char* outFileName = SYCOPHANT_DIR "/CHALLENGE";
+char* inFileName = SYCOPHANT_DIR "/RESPONSE";
 
 FILE* inLock;
 FILE* outLock;
@@ -272,7 +273,7 @@ static struct wpabuf * eap_mschapv2_challenge_reply(
 	// 	fclose(inFile);
 	// } else {
 	FILE* sycophantState;
-	char* sycophantStateName = "/tmp/SYCOPHANT_STATE";
+	char* sycophantStateName = SYCOPHANT_DIR "/SYCOPHANT_STATE";
 	char sup_state[2] = "*";
 
 
@@ -447,7 +448,7 @@ static struct wpabuf * eap_mschapv2_challenge(
 	// Inform of our readyness
 	// char* outLockName = "CHALLENGE_LOCK";
 	FILE* sycophantState;
-	char* sycophantStateName = "/tmp/SYCOPHANT_STATE";
+	char* sycophantStateName = SYCOPHANT_DIR "/SYCOPHANT_STATE";
 	sycophantState = fopen(sycophantStateName, "wb");
 
 	char * sup_state = "C";

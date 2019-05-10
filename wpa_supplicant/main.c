@@ -17,6 +17,7 @@
 #include "driver_i.h"
 #include "p2p_supplicant.h"
 
+#include "common/sycophant.h"
 
 static void usage(void)
 {
@@ -360,9 +361,9 @@ int main(int argc, char *argv[])
 "          |_|        |_____|   |___/          |_|                          \n\n"
 "The most important part is the ascii art - Georg-Christian Pranschke\n");
 
-	char* phase1FileName = "/tmp/SYCOPHANT_P1ID";
-	char* phase2FileName = "/tmp/SYCOPHANT_P2ID";
-	char* sycophantStateName = "/tmp/SYCOPHANT_STATE";
+	char* phase1FileName = SYCOPHANT_DIR "/SYCOPHANT_P1ID";
+	char* phase2FileName = SYCOPHANT_DIR "/SYCOPHANT_P2ID";
+	char* sycophantStateName = SYCOPHANT_DIR "/SYCOPHANT_STATE";
 
 	FILE* phase1File;
 	FILE* phase2File;
